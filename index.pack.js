@@ -956,6 +956,8 @@ exports.default = App;
 
 var _react = __webpack_require__(0);
 
+var _react2 = _interopRequireDefault(_react);
+
 var _Sidebar = __webpack_require__(21);
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
@@ -1027,36 +1029,36 @@ function App() {
     (0, _react.useEffect)(function () {
         localStorage.setItem('notes', JSON.stringify(notes));
     }, [notes]);
-    return React.createElement(
+    return _react2.default.createElement(
         "main",
         null,
-        notes.length > 0 ? React.createElement(
+        notes.length > 0 ? _react2.default.createElement(
             _reactSplit2.default,
             {
                 sizes: [30, 70],
                 direction: "horizontal",
                 className: "split"
             },
-            React.createElement(_Sidebar2.default, {
+            _react2.default.createElement(_Sidebar2.default, {
                 notes: notes,
                 currentNote: findCurrentNote(),
                 setCurrentNoteId: setCurrentNoteId,
                 newNote: createNewNote,
                 deleteNote: deleteNote
             }),
-            currentNoteId && notes.length > 0 && React.createElement(_Editor2.default, {
+            currentNoteId && notes.length > 0 && _react2.default.createElement(_Editor2.default, {
                 currentNote: findCurrentNote(),
                 updateNote: updateNote
             })
-        ) : React.createElement(
+        ) : _react2.default.createElement(
             "div",
             { className: "no-notes" },
-            React.createElement(
+            _react2.default.createElement(
                 "h1",
                 null,
                 "You have no notes"
             ),
-            React.createElement(
+            _react2.default.createElement(
                 "button",
                 {
                     className: "first-note",
@@ -1131,6 +1133,8 @@ exports.default = Editor;
 
 var _react = __webpack_require__(0);
 
+var _react2 = _interopRequireDefault(_react);
+
 var _reactMde = __webpack_require__(15);
 
 var _reactMde2 = _interopRequireDefault(_reactMde);
@@ -1157,10 +1161,10 @@ function Editor(_ref) {
         tasklists: true
     });
 
-    return React.createElement(
+    return _react2.default.createElement(
         "section",
         { className: "pane editor" },
-        React.createElement(_reactMde2.default, {
+        _react2.default.createElement(_reactMde2.default, {
             value: currentNote.body,
             onChange: updateNote,
             selectedTab: selectedTab,
@@ -1185,6 +1189,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Sidebar;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Sidebar(_ref) {
     var newNote = _ref.newNote,
         currentNote = _ref.currentNote,
@@ -1194,10 +1205,10 @@ function Sidebar(_ref) {
 
     var noteElements = notes.map(function (note, index) {
         var title = note.body.split("\n")[0];
-        return React.createElement(
+        return _react2.default.createElement(
             "div",
             { key: note.id },
-            React.createElement(
+            _react2.default.createElement(
                 "div",
                 {
 
@@ -1206,12 +1217,12 @@ function Sidebar(_ref) {
                         return setCurrentNoteId(note.id);
                     }
                 },
-                React.createElement(
+                _react2.default.createElement(
                     "h4",
                     { className: "text-snippet" },
                     title
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "button",
                     {
                         className: "delete-btn",
@@ -1219,24 +1230,24 @@ function Sidebar(_ref) {
                             return deleteNote(event, note.id);
                         }
                     },
-                    React.createElement("i", { className: "gg-trash trash-icon" })
+                    _react2.default.createElement("i", { className: "gg-trash trash-icon" })
                 )
             )
         );
     });
 
-    return React.createElement(
+    return _react2.default.createElement(
         "section",
         { className: "pane sidebar" },
-        React.createElement(
+        _react2.default.createElement(
             "div",
             { className: "sidebar--header" },
-            React.createElement(
+            _react2.default.createElement(
                 "h3",
                 null,
                 "Notes"
             ),
-            React.createElement(
+            _react2.default.createElement(
                 "button",
                 { className: "new-note", onClick: newNote },
                 "+"

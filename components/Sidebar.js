@@ -1,3 +1,4 @@
+import React from "react"
 export default function Sidebar({ newNote, currentNote, setCurrentNoteId, deleteNote, notes }) {
     const noteElements = notes.map((note, index) => {
         const title = note.body.split("\n")[0]
