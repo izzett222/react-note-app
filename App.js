@@ -1,19 +1,18 @@
-import React, { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Sidebar from "./components/Sidebar"
 import Editor from "./components/Editor"
-import { data } from "./data"
 import Split from "react-split"
 import { nanoid } from "nanoid"
 
 
 
 export default function App() {
-    const [notes, setNotes] = React.useState(() => JSON.parse(localStorage.getItem('notes')) || [])
-    const [currentNoteId, setCurrentNoteId] = React.useState(
+    const [notes, setNotes] = useState(() => JSON.parse(localStorage.getItem('notes')) || [])
+    const [currentNoteId, setCurrentNoteId] = useState(
         (notes[0] && notes[0].id) || ""
     )
 
-    function createNewNote() {
+    const createNewNote = () => {
         const newNote = {
             id: nanoid(),
             body: "# Type your markdown note's title here"
@@ -24,7 +23,7 @@ export default function App() {
         setCurrentNoteId(newNote.id)
     }
 
-    function updateNote(text) {
+    const updateNote = (text) => {
         setNotes(oldNotes => {
             const filteredNote = oldNotes.filter(el => el.id !== currentNoteId)
             const oldNote = oldNotes.find(el => el.id === currentNoteId);
@@ -33,12 +32,12 @@ export default function App() {
         }
         )
     }
-    function findCurrentNote() {
+    const findCurrentNote = () => {
         return notes.find(note => {
             return note.id === currentNoteId
         }) || notes[0]
     }
-    function deleteNote(event, noteId) {
+    const deleteNote = (event, noteId) => {
         event.stopPropagation()
         setNotes((oldNotes) => {
             return oldNotes.filter(el => el.id !== noteId)
